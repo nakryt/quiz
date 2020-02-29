@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import Quiz from "./Components/Quiz/Quiz"
+import store from "./store/store"
+import {Provider} from "react-redux"
+import Layout from "./Components/hoc/Layout/Layout";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import Authentication from "./Components/Authentication/Authentication";
+import QuizCreator from "./Components/QuizCreator/QuizCreateContainer";
+import QuizList from "./Components/QuizList/QuizList";
 
-const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: React.FC = (): React.ReactElement => {
+
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <Layout>
+                    <Switch>
+                        <Route exact path='/' component={QuizList}/>
+                        <Route path='/login' component={Authentication}/>
+                        <Route path='/quiz-creator' component={QuizCreator}/>
+                        <Route path='/quiz/:id' component={Quiz}/>
+                        <Redirect to='/'/>
+                    </Switch>
+                </Layout>
+            </Provider>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+const AppContainer = () => {
+    return <App/>
+}
+
+export default AppContainer
+

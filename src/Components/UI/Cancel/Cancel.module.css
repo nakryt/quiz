@@ -1,0 +1,13 @@
+.CancelWrapper {
+    position: relative;
+}
+
+.Cancel {
+
+}
+
+.Cancel svg {
+    position: relative;
+    top: 3px;
+    fill: #ff5e54;
+}

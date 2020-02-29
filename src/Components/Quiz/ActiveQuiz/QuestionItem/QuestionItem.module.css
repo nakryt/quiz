@@ -1,0 +1,29 @@
+.QuestionItemWrapper {
+    padding: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+}
+
+.QuestionItem {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.QuestionItemTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.QuestionItemQuestion {
+    max-width: 80%;
+}
+
+@media (max-width: 380px) {
+    .QuestionItemQuestion {
+        max-width: 70%;
+    }
+}

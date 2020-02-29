@@ -1,0 +1,13 @@
+.CheckWrapper {
+    position: relative;
+}
+
+.Check {
+    height: auto;
+}
+
+.Check svg {
+    position: relative;
+    top: 3px;
+    fill: #39c322;
+}

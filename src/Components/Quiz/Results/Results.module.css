@@ -1,0 +1,38 @@
+.ResultsWrap {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.ResultsTitle {
+    text-align: center;
+}
+
+.ResultsList {
+    margin: 0 0 40px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ResultsItem {
+    display: flex;
+    align-items: center;
+    margin: 0 0 8px 0;
+}
+
+.ResultsQuestion {
+    margin-right: 10px;
+}
+
+.ResultsIcon {
+
+}
+
+.ResultsButtonWrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ResultsButtonWrap a button {
+    margin-right: 0;
+}

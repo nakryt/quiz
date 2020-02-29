@@ -1,0 +1,38 @@
+.Drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100vh;
+    max-width: 300px;
+    padding: 50px 30px;
+    font-size: 2rem;
+    color: #000000;
+    background-color: #ffffff;
+    transition: all 0.4s ease-in;
+    margin-left: -300px;
+    box-sizing: border-box;
+    z-index: 99;
+}
+
+.DrawerOpen {
+    margin-left: 0;
+}
+
+.DrawerLink {
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.DrawerLink:hover {
+    color: #515151;
+}
+
+@media (max-width: 380px) {
+    .Drawer {
+        width: 250px;
+    }
+}

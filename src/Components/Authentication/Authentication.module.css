@@ -1,0 +1,38 @@
+.AuthenticationWrap {
+    padding-top: 30vh;
+    flex-grow: 1;
+    background: linear-gradient(0deg, rgb(0, 200, 200), rgb(0, 100, 100) 50%, rgb(20, 200, 255) 100%);
+
+}
+
+.Authentication {
+    display: flex;
+    width: 250px;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.Authentication label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+
+.AuthenticationEmail {
+    margin-bottom: 10px;
+}
+
+.AuthenticationPassword {
+    margin-bottom: 10px;
+}
+
+.AuthenticationButtonWrap {
+    display: flex;
+    justify-content: center;
+}
+
+.AuthenticationButtonWrap button:last-child {
+    margin-right: 0;
+}
