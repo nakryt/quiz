@@ -8,11 +8,6 @@ import userAPI from "../../api/userAPI";
 import {getIsRegistered} from "../../store/selectors/authSelectors";
 import { Redirect } from 'react-router-dom';
 
-//
-// type TQuizItem = ['question', string] |
-//     ['answer_1', string] | ['answer_2', string] |
-//     ['answer_3', string] | ['answer_4', string] | ['rightAnswer', string]
-// type TQuizItem = 'question' | 'answer_1' | 'answer_2' | 'answer_3' | 'answer_4' | 'rightAnswer'
 type Props = {};
 const QuizCreateContainer: FunctionComponent<Props> = (props) => {
     const dispatch = useDispatch()
@@ -20,9 +15,9 @@ const QuizCreateContainer: FunctionComponent<Props> = (props) => {
         const fields:TFieldTemplates = []
         for (let i = 0; i < fieldsNumber; i++) {
             if (!i) {
-                fields.push({name: 'question', placeholder: 'Вопрос', label: 'Напишите вопрос:'})
+                fields.push({name: 'question', placeholder: 'Вопрос', label: 'Напишите вопрос'})
             } else {
-                fields.push({name: `answer_${i}`, placeholder: 'Вариант ответа', label: `Вариант ${i}:`})
+                fields.push({name: `answer_${i}`, placeholder: 'Вариант ответа', label: `Вариант ${i}`})
             }
         }
         return fields

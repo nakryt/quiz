@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_KEY = "AIzaSyB-94Sq7L7VD9mOxw1d4zRL1EIjK6-aAYY"
+export const API_KEY = process.env.REACT_APP_APIKEY
 const instance = axios.create({
     baseURL: 'https://quiz-36da1.firebaseio.com/',
     headers: {
