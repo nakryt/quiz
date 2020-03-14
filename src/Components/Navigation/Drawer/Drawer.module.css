@@ -34,7 +34,11 @@
 @media (max-width: 380px) {
     .Drawer {
         width: 250px;
+<<<<<<< HEAD
         font-size: 1.6rem;
+=======
+        font-size: 1rem;
+>>>>>>> 65f9680724bc6baf480f666725055e2bb97716a9
     }
 
     .DrawerLink {
