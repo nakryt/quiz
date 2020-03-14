@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="62840f60-df2c-45d0-b794-61f01e976d84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Navigation/Drawer/Drawer.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Navigation/Drawer/Drawer.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Authentication/Authentication.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Authentication/Authentication.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Authentication/Authentication_Old.tsx" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +129,7 @@
       <workItem from="1583015161227" duration="749000" />
       <workItem from="1583093002079" duration="909000" />
       <workItem from="1583094087722" duration="25000" />
-      <workItem from="1584218393930" duration="1061000" />
+      <workItem from="1584218393930" duration="1712000" />
     </task>
     <servers />
   </component>

@@ -31,14 +31,14 @@ class Authentication extends Component<InjectedFormProps<TAuth, TAuthSubmit> & T
                     <div className={classes.AuthenticationEmail}>
                         <Field name='email' component={Input}
                                type='email' placeholder='Email'
-                               label={'Email:'}
+                               label={'Email'}
                                validate={[validate.required, maxLength30, validate.email]}
                         />
                     </div>
                     <div className={classes.AuthenticationPassword}>
                         <Field name='password' component={Input}
                                type='password' placeholder='Password'
-                               label={'Password:'}
+                               label={'Password'}
                                validate={[validate.required, minLength8]}
                         />
                     </div>
