@@ -22,7 +22,7 @@
 }
 
 .DrawerLink {
-    margin-bottom: 15px;
+    margin-bottom: 2rem;
     text-decoration: none;
     color: #000000;
 }
@@ -34,5 +34,10 @@
 @media (max-width: 380px) {
     .Drawer {
         width: 250px;
+        font-size: 1rem;
+    }
+
+    .DrawerLink {
+        margin-bottom: 4rem;
     }
 }

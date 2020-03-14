@@ -15,7 +15,7 @@ const Results: FunctionComponent<IResults> = ({results, questions}) => {
     }
     return (
       <div className={classes.ResultsWrap}>
-          <h1 className={classes.ResultsTitle}>FINISHED</h1>
+          <h1 className={classes.ResultsTitle}>Тест завершен</h1>
           <ul className={classes.ResultsList}>
           {
               Object.values(results).map((value, index) =>
