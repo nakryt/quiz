@@ -3,4 +3,5 @@
     display: flex;
     justify-content: center;
     flex-grow: 1;
+    background: linear-gradient(0deg, #5ebbee, #bbf1ff 50%, #5ebbee 100%);
 }

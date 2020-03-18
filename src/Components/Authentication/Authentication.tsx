@@ -1,75 +1,82 @@
-import React, {Component, useEffect, useState} from 'react';
-import classes from './Authentication.module.css'
-import {reduxForm, Field, Form, InjectedFormProps} from "redux-form";
-import Input from "../UI/Input/Input";
+import React, {useEffect, useState} from 'react';
 import {TAuth} from "../../store/formTypes";
-import validate from "../../utils/validate"
-import Button from "../UI/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {singIn, singUp} from "../../store/authActions";
 import { Redirect } from 'react-router-dom';
 import {getIsRegistered} from "../../store/selectors/authSelectors";
+import {Controller, useForm} from "react-hook-form";
+import {
+    Button,
+    InputAdornment,
+    Grid,
+    OutlinedInput,
+    FormControl,
+    InputLabel,
+    IconButton, FormHelperText
+} from "@material-ui/core";
+import {makeStyles, Theme, createStyles} from "@material-ui/core/styles";
+import {Visibility, VisibilityOff, EmailOutlined} from '@material-ui/icons';
 
-type TAuthSubmit = {
+type TAuthProps = {
     onSubmitHandler: (data:TAuth, isLogin:boolean) => void
 }
 
-const minLength8 = validate.minLength(8)
-const maxLength30 = validate.maxLength(30)
-
-class Authentication extends Component<InjectedFormProps<TAuth, TAuthSubmit> & TAuthSubmit> {
-    state = {
-        isLogin: true
-    }
-    render() {
-        const onSubmit = (isLogin:boolean, data:TAuth) => {
-            this.props.onSubmitHandler(data, isLogin)
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            height: '100vh',
+            flexDirection:'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            '& .MuiFormControl-root': {
+                width: '100%',
+            },
+            '& .MuiInputBase-root': {
+                background: 'transparent'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+                borderWidth: 2,
+                borderColor: '#4e4e4e'
+            },
+            '& .MuiFormHelperText-root': {
+                color: 'red'
+            }
+        },
+        margin: {
+            marginBottom: theme.spacing(2),
+        },
+        buttonWrap: {
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            marginTop: theme.spacing(2),
+            '& button': {
+                width: 90
+            }
         }
-        return (
-            <div className={classes.AuthenticationWrap}>
-                <Form className={classes.Authentication} onSubmit={this.props.handleSubmit(onSubmit.bind(this, this.state.isLogin))}>
-                    <div className={classes.AuthenticationEmail}>
-                        <Field name='email' component={Input}
-                               type='email' placeholder='Email'
-                               label={'Email'}
-                               validate={[validate.required, maxLength30, validate.email]}
-                        />
-                    </div>
-                    <div className={classes.AuthenticationPassword}>
-                        <Field name='password' component={Input}
-                               type='password' placeholder='Password'
-                               label={'Password'}
-                               validate={[validate.required, minLength8]}
-                        />
-                    </div>
-                    <div className={classes.AuthenticationButtonWrap}>
-                        <Button type={"success"}
-                                disabled={!this.props.valid}
-                                onClick={() => {this.setState({isLogin: true})}}
-                        >Войти</Button>
-                        <Button type={"primary"}
-                                disabled={!this.props.valid}
-                                onClick={() => {
-                                    this.setState({isLogin: false})
-                                }}
-                        >Зарегистрироваться</Button>
-                    </div>
-                </Form>
-            </div>
-        );
-    }
-}
+    }),
+);
 
-const AuthenticationContainer = reduxForm<TAuth, TAuthSubmit>({form: 'auth'})(Authentication)
-
-const Login = () => {
+const Authentication:React.FC = (props) => {
     const dispatch = useDispatch()
     const registered = useSelector(getIsRegistered)
+    const classes = useStyles()
+
+    const [isLogin, setIsLogin] = useState(false)
     const [redirect, setRedirect] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
+    const { control, handleSubmit, reset, errors, } = useForm()
+
     useEffect(() => {
-            setRedirect(registered)
+        setRedirect(registered)
     }, [registered, setRedirect])
-    const onSubmitHandler = async (data:TAuth, isLogin:boolean) => {
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
+    const onSubmitHandler = (data:any) => {
+        debugger
         if (isLogin) {
             dispatch(singIn(data))
         } else {
@@ -78,11 +85,102 @@ const Login = () => {
         if (registered)
             setRedirect(true)
     }
-    return <>
-        {
-            redirect ? <Redirect to={'/'}/> :
-                <AuthenticationContainer onSubmitHandler={onSubmitHandler}/>
-        }
+    return (
+        <>
+            { redirect && <Redirect to={'/'}/> }
+            <form onSubmit={handleSubmit(onSubmitHandler)} className={classes.root}>
+                <Grid >
+                    <Grid item >
+                        <Controller
+                            name='email'
+                            control={control}
+                            defaultValue=''
+                            as={
+                                <FormControl
+                                    className={classes.margin}
+                                    variant="outlined">
+                                    <InputLabel htmlFor="inputEmail">Email *</InputLabel>
+                                    <OutlinedInput
+                                        id="inputEmail"
+                                        error={!!errors.email}
+                                        endAdornment={<EmailOutlined/>}
+                                        labelWidth={55}
+                                    />
+                                    {
+                                        errors.email &&
+                                            <FormHelperText>{errors.email.message}</FormHelperText>
+                                    }
+                                </FormControl>}
+                            rules={{
+                                required: {value: true, message: "Поле является обязательным"},
+                                pattern: {
+                                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i,
+                                    message: 'Введите коректный email'
+                                }
+                            }}
+                        />
+                    </Grid>
+
+                    <Grid item>
+                        <Controller
+                            name='password'
+                            className={classes.margin}
+                            as={
+                                <FormControl variant="outlined">
+                                    <InputLabel htmlFor="inputPassword">Password *</InputLabel>
+                                    <OutlinedInput
+                                        id="inputPassword"
+                                        type={showPassword ? 'text' : 'password'}
+                                        error={!!errors.password}
+                                        autoComplete={'off'}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={toggleShowPassword}
+                                                    edge="end"
+                                                >
+                                                    {showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                        labelWidth={82}
+                                    />
+                                    {
+                                        errors.password &&
+                                            <FormHelperText>{errors.password.message}</FormHelperText>
+                                    }
+                                </FormControl>}
+                            control={control}
+                            defaultValue=''
+                            rules={{
+                                required: {value: true, message: "Поле является обязательным"},
+                                minLength: {value: 6, message: "Минимальная длина: 6 символов"}
+                            }}
+                        />
+
+                    </Grid>
+
+                </Grid>
+
+                <div className={classes.buttonWrap}>
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        color='secondary'
+                        onClick={() => setIsLogin(true)}
+                    >Login</Button>
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        color='primary'
+                        onClick={() => setIsLogin(false)}
+                    >SignUp</Button>
+                </div>
+            </form>
         </>
+    );
+
 }
-export default Login;
+
+export default Authentication;
