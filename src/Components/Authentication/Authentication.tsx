@@ -67,7 +67,7 @@ const Authentication:React.FC = (props) => {
     const [isLogin, setIsLogin] = useState(false)
     const [redirect, setRedirect] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const { control, handleSubmit, reset, errors, } = useForm()
+    const { control, handleSubmit, errors, } = useForm()
 
     useEffect(() => {
         setRedirect(registered)
@@ -76,7 +76,6 @@ const Authentication:React.FC = (props) => {
         setShowPassword(!showPassword)
     }
     const onSubmitHandler = (data:any) => {
-        debugger
         if (isLogin) {
             dispatch(singIn(data))
         } else {
@@ -99,12 +98,12 @@ const Authentication:React.FC = (props) => {
                                 <FormControl
                                     className={classes.margin}
                                     variant="outlined">
-                                    <InputLabel htmlFor="inputEmail">Email *</InputLabel>
+                                    <InputLabel htmlFor="inputEmail">Email</InputLabel>
                                     <OutlinedInput
                                         id="inputEmail"
                                         error={!!errors.email}
                                         endAdornment={<EmailOutlined/>}
-                                        labelWidth={55}
+                                        labelWidth={45}
                                     />
                                     {
                                         errors.email &&
@@ -127,7 +126,7 @@ const Authentication:React.FC = (props) => {
                             className={classes.margin}
                             as={
                                 <FormControl variant="outlined">
-                                    <InputLabel htmlFor="inputPassword">Password *</InputLabel>
+                                    <InputLabel htmlFor="inputPassword">Password</InputLabel>
                                     <OutlinedInput
                                         id="inputPassword"
                                         type={showPassword ? 'text' : 'password'}
@@ -144,7 +143,7 @@ const Authentication:React.FC = (props) => {
                                                 </IconButton>
                                             </InputAdornment>
                                         }
-                                        labelWidth={82}
+                                        labelWidth={70}
                                     />
                                     {
                                         errors.password &&
@@ -155,7 +154,7 @@ const Authentication:React.FC = (props) => {
                             defaultValue=''
                             rules={{
                                 required: {value: true, message: "Поле является обязательным"},
-                                minLength: {value: 6, message: "Минимальная длина: 6 символов"}
+                                minLength: {value: 8, message: "Минимальная длина: 8 символов"}
                             }}
                         />
 
@@ -167,7 +166,7 @@ const Authentication:React.FC = (props) => {
                     <Button
                         type='submit'
                         variant='contained'
-                        color='secondary'
+                        color='primary'
                         onClick={() => setIsLogin(true)}
                     >Login</Button>
                     <Button

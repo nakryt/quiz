@@ -18,6 +18,6 @@ export type TQuizCreator = {
 
 export type TQuizCreatorProps = {
     fields: TFieldTemplates
-    createQuiz: () => void
+    createQuiz: () => number
     disabledCreateButton?: boolean
 }

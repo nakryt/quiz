@@ -17,16 +17,16 @@ const QuizCreateContainer: FunctionComponent<Props> = (props) => {
             if (!i) {
                 fields.push({name: 'question', placeholder: 'Вопрос', label: 'Напишите вопрос'})
             } else {
-                fields.push({name: `answer_${i}`, placeholder: 'Вариант ответа', label: `Вариант ${i}`})
+                fields.push({name: `answer_${i}`, placeholder: 'Вариант ответа', label: `Вариант ответа ${i}`})
             }
         }
         return fields
     }
     const [questionId, setQuestionId] = useState<TId>(0)
     const [quiz, setQuiz] = useState<Array<IQuestion>>([])
-    const submitHandler = (data: TQuizCreator) => {
-        let question:string = ''
-        let rightAnswer:number = 0
+    const addQuestion = (data: TQuizCreator) => {
+        let question = ''
+        let rightAnswer = 0
         const answers:Array<IAnswer> = []
         Object.entries(data).forEach((val):void => {
             const [key, value] = val
@@ -49,17 +49,21 @@ const QuizCreateContainer: FunctionComponent<Props> = (props) => {
         if (response) {
             setQuestionId(0)
             setQuiz([])
+            return 0
         }
+        return 1
     }
-    const registered = useSelector(getIsRegistered)
+    const registered = true
+        // useSelector(getIsRegistered)
     return (
         <>
             {
                 registered ?
-                    <QuizCreator onSubmit={submitHandler}
-                                 fields={fieldTemplates(5)}
-                                 createQuiz={createQuizHandler}
-                                 disabledCreateButton={!quiz.length}
+                    <QuizCreator
+                        fields={fieldTemplates(5)}
+                        addQuestion={addQuestion}
+                        createQuiz={createQuizHandler}
+                        disabledCreateButton={!quiz.length}
                     /> :
                     <Redirect to='/' />
             }
