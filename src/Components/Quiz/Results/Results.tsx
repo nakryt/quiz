@@ -35,7 +35,7 @@ const Results: FunctionComponent<IResults> = ({results, questions}) => {
           <div className={classes.ResultsButtonWrap}>
               <Button type={"error"} onClick={resetHandler}>Повторить</Button>
               <Link to={'/quiz-list'}>
-                  <Button type={"success"}>Перейти к списку тестов</Button>
+                  <Button type={"success"}>Спискок тестов</Button>
               </Link>
           </div>
       </div>
