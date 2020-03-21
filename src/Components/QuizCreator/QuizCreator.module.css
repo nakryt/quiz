@@ -1,39 +1,9 @@
-.QuizCreatorWrap {
-    padding-top: 100px;
-    flex-grow: 1;
-    background: linear-gradient(45deg, rgb(0, 200, 200), rgb(0, 100, 100) 50%, rgb(20, 200, 255) 100%);
+.container {
+
 }
 
-.QuizCreator {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
-    width: 400px;
-}
-
-.QuizCreator label {
-    color: #ffffff;
-    font-weight: 500;
-}
-
-.QuizCreatorButtonsWrap {
-    display: flex;
-    justify-content: flex-end;
-    padding-left: 20px;
-    margin-top: 20px;
-}
-
-.QuizCreatorRightAnswerLabel {
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding-left: 5px;
-}
-
-@media (max-width: 420px) {
-    .QuizCreator {
-        width: 90%;
+@media (max-width: 660px) {
+    .container {
+        padding-top: 90px !important;
     }
-
 }

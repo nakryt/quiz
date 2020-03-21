@@ -53,8 +53,7 @@ const QuizCreateContainer: FunctionComponent<Props> = (props) => {
         }
         return 1
     }
-    const registered = true
-        // useSelector(getIsRegistered)
+    const registered = useSelector(getIsRegistered)
     return (
         <>
             {
